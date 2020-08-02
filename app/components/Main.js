@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity,
+  StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity, AsyncStorage,
 }
   from 'react-native';
 import Note from './Note';
@@ -15,6 +15,7 @@ export default class Main extends React.Component {
       notetext: ','
     }
   }
+
   render() {
 
     let notes = this.state.noteArray.map((val, key) => {
@@ -26,7 +27,7 @@ export default class Main extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.headerText}>Noter</Text>
+          <Text style={styles.headerText}>Add Notes</Text>
         </View>
         <ScrollView style={styles.scrollContainer}>
          {notes}
@@ -36,7 +37,7 @@ export default class Main extends React.Component {
             onChangeText={(noteText) => this.setState({ noteText })}
             value={this.state.noteText}
             style={styles.textInput}
-            placeholder='>note'
+            placeholder='your notes'
             placeholderTextColor='white'>
 
           </TextInput>
@@ -49,6 +50,7 @@ export default class Main extends React.Component {
   }
   addNote() {
     //alert('test');
+    
     if (this.state.noteText) {
       let d = new Date();
       this.state.noteArray.push({
