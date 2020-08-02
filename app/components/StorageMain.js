@@ -34,7 +34,7 @@ export default class MainStorage extends React.Component {
     }
 
   
-    updateAsyncStorage(notes) {
+    updateStorage(notes) {
 
         return new Promise( async(resolve, reject) => {
 
@@ -53,7 +53,7 @@ export default class MainStorage extends React.Component {
     }
 
     
-    cloneNotes() {
+    cloneHandler() {
         return [...this.state.notes];
     }
 
@@ -65,10 +65,10 @@ export default class MainStorage extends React.Component {
 
         try {
 
-            const notes = this.cloneNotes();
+            const notes = this.cloneHandler();
             notes.push(this.state.note);
 
-            await this.updateAsyncStorage(notes);
+            await this.updateStorage(notes);
 
             this.setState({
                 notes: notes,
@@ -89,10 +89,10 @@ export default class MainStorage extends React.Component {
 
         try {
 
-            const notes = this.cloneNotes();
+            const notes = this.cloneHandler();
             notes.splice(key, 1);
 
-            await this.updateAsyncStorage(notes);
+            await this.updateStorage(notes);
             this.setState({ notes: notes });
 
         }
